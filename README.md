@@ -11,3 +11,15 @@ A função input sempre retorna string, e como não dá pra fazer operações ma
 
 Pergunta 3: 
 Se somar str com float dá um erro de compatibilidade. 
+
+
+DESAFIO 2):
+
+Pergunta 1: 
+O laço for é usado quando existe um limite conhecido para repetições, enquanto o while serve para repetir até uma condição ser cumprida.
+
+Pergunta 2: 
+A palavra chave "return" serve para retornar o valor produzido pela função.
+
+Pergunta 3: 
+Um loop infinito acontece enquanto uma condição não é cumprida. É possível evitar isso certificando-se que a variável seja falsa em algum momento ou seja possível controla-lá.
