@@ -1,0 +1,131 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOotUyIoq08zQE8vCS7JeKl",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/nicolasdelira/Trilha-python-For-code/blob/main/simulador_tcg%20\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "L0O8wEBJNc2f"
+      },
+      "outputs": [],
+      "source": [
+        "def atacar(nome_atacante, ataque, nome_defensor, vida_defensor):\n",
+        "    \"\"\"\n",
+        "    Realiza um ataque e retorna o novo HP do defensor.\n",
+        "    \"\"\"\n",
+        "    vida_defensor -= ataque\n",
+        "\n",
+        "    # Impede que o HP fique negativo\n",
+        "    if vida_defensor < 0:\n",
+        "        vida_defensor = 0\n",
+        "\n",
+        "    print(f\"{nome_atacante} atacou {nome_defensor} causando {ataque} de dano!\")\n",
+        "\n",
+        "    return vida_defensor\n",
+        "\n",
+        "\n",
+        "def exibir_placar(nome1, vida1, nome2,vida2):\n",
+        "    \"\"\"\n",
+        "    Exibe o HP atual dos dois monstros.\n",
+        "    \"\"\"\n",
+        "    print(\"\\n===== PLACAR ATUAL =====\")\n",
+        "    print(f\"{nome1}: {vida1} HP\")\n",
+        "    print(f\"{nome2}: {vida2} HP\")\n",
+        "    print(\"========================\\n\")\n",
+        "\n",
+        "\n",
+        "# Entrada de dados dos Monstros\n",
+        "nome_monstro1 = input(\"Digite o nome do Monstro 1: \")\n",
+        "vida_monstro1 = int(input(\"Digite o HP do Monstro 1: \"))\n",
+        "ataque_monstro1 = int(input(\"Digite o ataque do Monstro 1: \"))\n",
+        "\n",
+        "nome_monstro2 = input(\"\\nDigite o nome do Monstro 2: \")\n",
+        "vida_monstro2 = int(input(\"Digite o HP do Monstro 2: \"))\n",
+        "ataque_monstro2 = int(input(\"Digite o ataque do Monstro 2: \"))\n",
+        "\n",
+        "# Validação dos valores\n",
+        "if (vida_monstro1 <= 0 or ataque_monstro1 <= 0 or\n",
+        "    vida_monstro2 <= 0 or ataque_monstro2 <= 0):\n",
+        "\n",
+        "    print(\"\\nErro: Os valores de HP e Ataque devem ser maiores que zero.\")\n",
+        "else:\n",
+        "    turno = 1\n",
+        "\n",
+        "    # Laço principal da batalha\n",
+        "    while vida_monstro1 > 0 and vida_monstro2 > 0:\n",
+        "        print(f\"========== TURNO {turno} ==========\")\n",
+        "\n",
+        "        # Monstro 1 ataca\n",
+        "        vida_monstro2 = atacar(\n",
+        "            nome_monstro1,\n",
+        "            ataque_monstro1,\n",
+        "            nome_monstro2,\n",
+        "            vida_monstro2\n",
+        "        )\n",
+        "\n",
+        "        # Exibe placar após ataque\n",
+        "        exibir_placar(\n",
+        "            nome_monstro1,\n",
+        "            vida_monstro1,\n",
+        "            nome_monstro2,\n",
+        "            vida_monstro2\n",
+        "        )\n",
+        "\n",
+        "        # Verifica se o Monstro 2 foi derrotado\n",
+        "        if vida_monstro2 <= 0:\n",
+        "            break\n",
+        "\n",
+        "        # Monstro 2 ataca\n",
+        "        vida_monstro1 = atacar(\n",
+        "            nome_monstro2,\n",
+        "            ataque_monstro2,\n",
+        "            nome_monstro1,\n",
+        "            vida_monstro1\n",
+        "        )\n",
+        "\n",
+        "        # Exibe placar após ataque\n",
+        "        exibir_placar(\n",
+        "            nome_monstro1,\n",
+        "            vida_monstro1,\n",
+        "            nome_monstro2,\n",
+        "            vida_monstro2\n",
+        "        )\n",
+        "\n",
+        "        turno += 1\n",
+        "\n",
+        "    # Resultado final\n",
+        "    print(\"===== FIM DA BATALHA =====\")\n",
+        "\n",
+        "    if vida_monstro1 > 0:\n",
+        "        print(f\"O vencedor foi {nome_monstro1}!\")\n",
+        "    else:\n",
+        "        print(f\"O vencedor foi {nome_monstro2}!\")\n"
+      ]
+    }
+  ]
+}
